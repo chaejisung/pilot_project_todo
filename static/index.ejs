@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="/post" method="post">
+        <input type="text" name="text">
+        <button type="submit">submit</button>
+    </form>
+    <% items.forEach(function(item){ %>
+        <div> <p> <%= item %> </p></div>
+    <% }); %>
+
+</body>
+</html>

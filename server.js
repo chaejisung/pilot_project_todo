@@ -2,6 +2,10 @@
 
 const express = require('express');
 const app = express();
+const ejs = require('ejs');
+
+app.set('view engine', 'ejs');
+app.set('views', './static');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
@@ -11,9 +15,17 @@ app.listen(8080, function () {
 })
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/static/index.html')
+    res.render('index.ejs', {items:items});
 })
 
+let items=[];
+
 app.post('/post', function(req, res){
-    console.log(req);
+    let item = req.body.text;
+    console.log(item);
+    if(item != ""){items.push(item);}
+    console.log("items", items);
+
+    res.render('index.ejs', {items: items});
+    
 });
